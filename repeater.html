@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <title>Video Repeater</title>
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        html {
+            background: rgb(63, 7, 7);
+        }
+        body {
+            margin: 0 5%;
+            color: #ddd;
+            font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+            font-size: 17px;
+        }
+
+        .title {
+            background: #222;
+        }
+        .centered {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .horizontal-center {
+            text-align: center;
+            margin: 0 auto;
+        }
+        input {
+            text-align: center;
+            width: 550px;
+            height: 15px;
+            background: #121212;
+            border: 1px solid #121212;
+            border-radius: 8px;
+            padding: 15px;
+            color: #b5c5d7;
+            transition: 0.1s;
+            cursor: default;
+            font-size: 1.1em;
+            margin: 15px;
+        }
+
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+        -moz-appearance: textfield;
+        }
+
+        input:hover {
+            box-shadow: 0 0 0 2px #b5c5d7;
+        }
+
+        .timeInput {
+            width: 130px;
+        }
+
+        label {
+            display: inline;
+            width: 300px; 
+            margin: 10px;
+        }
+
+        span {
+            font-size: 1.2em; 
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='title' id='wall'>
+        <div class='centered'>
+            <div class='horizontal-center'>
+                <label>
+                <span>Youtube Video URL</span>
+                <input type='text' id='urlInput' onfocus='this.select()' placeholder="www.youtube.com/watch?..." value="https://www.youtube.com/watch?v=j1hft9Wjq9U">
+                </label>
+            </div>
+
+            <div id="player"></div>
+            
+            <div class='horizontal-center'>
+                <label>
+                  <span>Start Time (seconds)</span>
+                  <input type='number' id='startTimeInput' class='timeInput' onfocus='this.select()' step='1' min='0' value=0 required=true>
+                </label>
+                <label>
+                  <span>End Time (seconds)</span>
+                  <input type='number' id='endTimeInput' class='timeInput' onfocus='this.select()' step='1' min='0' value=0 required=true>
+                </label>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src='script.js' type='text/javascript'></script>
+    <!-- <script type='text/javascript'>
+       
+    </script> -->
+</body>
+
+</html>

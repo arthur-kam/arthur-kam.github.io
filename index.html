@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <title>Arthur Kam</title>
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
+    <link rel="stylesheet" href="style.css">
+    <script type='text/javascript'>
+        function hideAndShow(obj) {
+            var block = obj.nextElementSibling;
+            block.style.display = block.style.display === 'block' ? 'none' : 'block';
+        }
+        function toggleCall(obj, f) {
+            var block = obj.nextElementSibling;
+            if (block.style.display === 'block') {
+                block.style.display = 'none';
+            } else {
+                block.style.display = 'block';
+                f();
+            }
+        }
+        function toggleTrippy() {
+            var element = document.getElementById('wall');
+            if (element.classList.contains('title')) {
+                element.classList = ['wrapper'];
+            } else {
+                element.classList = ['title'];
+            }
+        }
+    </script>
+    <style>
+        html {
+            background: #222;
+        }
+        body {
+            margin: 0 5%;
+            color: #ddd;
+            font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+            font-size: 17px;
+        }
+
+        .wrapper { 
+            height: 100%;
+            width: 100%;
+            left:0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            position: fixed;
+            background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+            background-size: 1800% 1800%;
+
+            -webkit-animation: rainbow 18s ease infinite;
+            -z-animation: rainbow 18s ease infinite;
+            -o-animation: rainbow 18s ease infinite;
+            animation: rainbow 18s ease infinite;
+        }
+
+        @-webkit-keyframes rainbow {
+            0%{background-position:0% 82%}
+            50%{background-position:100% 19%}
+            100%{background-position:0% 82%}
+        }
+        @-moz-keyframes rainbow {
+            0%{background-position:0% 82%}
+            50%{background-position:100% 19%}
+            100%{background-position:0% 82%}
+        }
+        @-o-keyframes rainbow {
+            0%{background-position:0% 82%}
+            50%{background-position:100% 19%}
+            100%{background-position:0% 82%}
+        }
+        @keyframes rainbow { 
+            0%{background-position:0% 82%}
+            50%{background-position:100% 19%}
+            100%{background-position:0% 82%}
+        }
+
+        .title {
+            background: #222;
+        }
+        .centered {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .section {
+            margin: 20px 0;
+            padding: 20px;
+            background: #222;
+        }
+        .section h1, .section div {
+            margin: 20px;
+        }
+        .section h2 {
+            margin: 0;
+            padding: 20px;
+
+            display: block;
+        }
+        .section h2:hover {
+            background: hsl(177, 50%, 42%);
+            color: #ddd;
+
+            cursor: pointer;
+        }
+        a {
+            color: #ddd;
+        }
+        a:link, a:visited {
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        a:active {
+            text-decoration: none;
+        }
+        p + a {
+            display: inline-block;
+        }
+        .section .block {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='title' id='wall'>
+        <div class='centered'>
+            <h1><a href='https://www.linkedin.com/in/arthur-kam/'>Arthur Kam</a></h1>
+                    <div>
+                        Honours Bachelor of Science<a onclick='toggleTrippy()'>;</a> Computer Science 
+                        <br>Graduated with High Distinction
+                        <br>
+                        <a href='https://www.uc.utoronto.ca/'>University College</a>, University of Toronto
+                        <br>
+                    </div>
+        </div>
+        
+    </div>
+
+</body>
+
+</html>
