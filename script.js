@@ -1,3 +1,4 @@
+var log = console.log;
 var tag = document.createElement('script');
 
 tag.src = "https://www.youtube.com/iframe_api";
@@ -33,7 +34,8 @@ window.onYouTubeIframeAPIReady = function() {
             modestbranding: 1,
             rel: 0,
             autoplay: 1,
-            enablejsapi: 1
+            enablejsapi: 1,
+            origin: document.domain,
         },
         events: { 
             'onReady': onPlayerReady,
