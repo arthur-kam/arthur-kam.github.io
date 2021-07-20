@@ -1,6 +1,6 @@
 var log = console.log;
-var tag = document.createElement('script');
 
+var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
@@ -15,14 +15,11 @@ var times = {
 YORI_NI_KAKERU = 'j1hft9Wjq9U'
 
 var videoId = YORI_NI_KAKERU; 
-var player;
 var vidLength;
-var startInput;
-var endInput;
-var urlInput;
+var startInput, endInput, urlInput;
 var timeoutId;
 
-
+var player;
 window.onYouTubeIframeAPIReady = function() {
     player = new YT.Player('player', {
         // height: '360',
@@ -36,17 +33,18 @@ window.onYouTubeIframeAPIReady = function() {
             autoplay: 1,
             enablejsapi: 1,
             html5: 1,
+            host: 'https://arthur-kam.github.io',
             origin: document.domain,
         },
         events: { 
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange,
+            'onReady': onReady,
+            'onStateChange': onStateChange,
             'onError': onError,
         }
     });
 }
 
-function onPlayerReady(event) {
+function onReady(event) {
     log('Player ready');
     vidLength = Math.floor(player.playerInfo.duration);
     // upon loading new video, set start time to 0 and end time to match end of video 
@@ -62,7 +60,7 @@ function onPlayerReady(event) {
     player.playVideo();
 }
 
-function onPlayerStateChange(event) {
+function onStateChange(event) {
     log('Player state change')
     if (event.data == YT.PlayerState.PLAYING) {
         var end = Math.min(times.end, vidLength);
