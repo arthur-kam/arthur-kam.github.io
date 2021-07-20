@@ -22,7 +22,7 @@ var urlInput;
 var timeoutId;
 
 
-function onYouTubeIframeAPIReady() {
+window.onYouTubeIframeAPIReady = function() {
     player = new YT.Player('player', {
         // height: '360',
         // width: '640',
