@@ -35,7 +35,7 @@ window.onYouTubeIframeAPIReady = function() {
             rel: 0,
             autoplay: 1,
             enablejsapi: 1,
-            origin: document.domain,
+            origin: 'https://arthur-kam.github.io',
         },
         events: { 
             'onReady': onPlayerReady,
