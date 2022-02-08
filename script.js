@@ -12,15 +12,15 @@ var times = {
 };
 
 // default video: YOASOBI - Racing Into The Night (Yoru ni Kakeru) / THE HOME TAKE
-DEFAULT_VIDEO_ID = 'j1hft9Wjq9U';
+var DEFAULT_VIDEO_ID = 'j1hft9Wjq9U';
 
 var videoId = DEFAULT_VIDEO_ID; 
 var vidLength;
 var startInput, endInput, urlInput;
 var timeoutId;
 
-FORMATTED_START_TIME_ID = 'formattedStartTime';
-FORMATTED_END_TIME_ID = 'formattedEndTime';
+var FORMATTED_START_TIME_ID = 'formattedStartTime';
+var FORMATTED_END_TIME_ID = 'formattedEndTime';
 
 var player;
 window.onYouTubeIframeAPIReady = function() {
@@ -67,8 +67,8 @@ function syncTimeFields() {
 }
 
 function resetFormattedTimeDisplays() {
-    showFormattedTime(startInput, FORMATTED_START_TIME_ID)();
-    showFormattedTime(endInput, FORMATTED_END_TIME_ID)();
+    _showFormattedTime(startInput, FORMATTED_START_TIME_ID)();
+    _showFormattedTime(endInput, FORMATTED_END_TIME_ID)();
 }
 
 function setInputValueCeilings() {
@@ -92,7 +92,11 @@ function onError(event) {
 }
 
 function restartVideoSection() {
-    player.seekTo(times.start);
+    if (player) {
+        player.seekTo(times.start);
+    } else {
+        log("Player does not exist");
+    }
 }
 
 function reloadPlayer() {
@@ -107,7 +111,7 @@ function reloadPlayer() {
 
 
 
-function updateStart() {
+function _updateStart() {
     times.start = parseInt(startInput.value);
     if (player.playerInfo.currentTime < times.start) {
         restartVideoSection();
@@ -119,7 +123,7 @@ function updateStart() {
     }
 }
 
-function updateEnd() {
+function _updateEnd() {
     times.end = parseInt(endInput.value);
     if (times.end < player.playerInfo.currentTime) {
         restartVideoSection();
@@ -131,15 +135,15 @@ function updateEnd() {
     }
 }
 
-function updateUrl() {
+function _updateUrl() {
     var url = urlInput.value;
     log('Current video - ID:', videoId);
-    videoId = getVideoId(url);
+    videoId = _getVideoId(url);
     log('New video requested - ID:', videoId);
     reloadPlayer();
 }
 
-function getVideoId(url) {
+function _getVideoId(url) {
     if (!url) {
         log('no URL found, defaulting to', DEFAULT_VIDEO_ID);
         return DEFAULT_VIDEO_ID;
@@ -159,8 +163,9 @@ function getVideoId(url) {
     return newId;
 }
 
-function formatSeconds(s) {
-    // given a number representing seconds, formats into a string of mm:ss if the duration represented is less than 1 hour, and hh:mm:ss otherwise.
+function _formatSeconds(s) {
+    // given a number representing seconds, formats into a string of mm:ss if the duration 
+    // represented is less than 1 hour, and hh:mm:ss otherwise.
     var secondsInAnHour = 60 * 60;
     var allMins = Math.trunc(s / 60);
     var seconds = s % 60;
@@ -176,7 +181,7 @@ function formatSeconds(s) {
     }
 }
 
-function validateTime(inputElement) {
+function _validateTime(inputElement) {
     return function() {
         if (inputElement.validity.rangeOverflow) {
             inputElement.value = vidLength;
@@ -190,9 +195,9 @@ function validateTime(inputElement) {
     }
 }
 
-function showFormattedTime(element, formattedDisplayId) {
+function _showFormattedTime(element, formattedDisplayId) {
     return function() {
-        var formattedStr = formatSeconds(element.value);
+        var formattedStr = _formatSeconds(element.value);
         document.getElementById(formattedDisplayId).innerHTML = formattedStr;
     }
 }
@@ -200,17 +205,17 @@ function showFormattedTime(element, formattedDisplayId) {
 
 window.onload = (function() {
     startInput = document.querySelector('#startTimeInput');
-    startInput.addEventListener('change', updateStart);
-    startInput.addEventListener('input', validateTime(startInput));
-    startInput.addEventListener('input', showFormattedTime(startInput, FORMATTED_START_TIME_ID))
+    startInput.addEventListener('change', _updateStart);
+    startInput.addEventListener('input', _validateTime(startInput));
+    startInput.addEventListener('input', _showFormattedTime(startInput, FORMATTED_START_TIME_ID))
 
     endInput = document.querySelector('#endTimeInput');
-    endInput.addEventListener('change', updateEnd);
-    endInput.addEventListener('input', validateTime(endInput));
-    endInput.addEventListener('input', showFormattedTime(endInput, FORMATTED_END_TIME_ID))
+    endInput.addEventListener('change', _updateEnd);
+    endInput.addEventListener('input', _validateTime(endInput));
+    endInput.addEventListener('input', _showFormattedTime(endInput, FORMATTED_END_TIME_ID))
 
     urlInput = document.querySelector('#urlInput');
-    urlInput.addEventListener('change', updateUrl);
-    urlInput.addEventListener('change', updateStart);
-    urlInput.addEventListener('change', updateEnd);
+    urlInput.addEventListener('change', _updateUrl);
+    urlInput.addEventListener('change', _updateStart);
+    urlInput.addEventListener('change', _updateEnd);
 })();
