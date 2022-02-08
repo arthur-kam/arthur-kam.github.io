@@ -1,9 +1,9 @@
 html {
-    background: rgb(16, 8, 88);
+    background: #121212;
 }
 body {
     margin: 0 5%;
-    color: #ddd;
+    color: #fff;
     font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 17px;
 }
@@ -17,19 +17,15 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.horizontal-center {
-    text-align: center;
-    margin: 0 auto;
-}
 input {
     text-align: center;
     width: 550px;
     height: 15px;
     background: #121212;
-    border: 1px solid #121212;
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 8px;
     padding: 15px;
-    color: #b5c5d7;
+    color: #fff;
     transition: 0.1s;
     cursor: default;
     font-size: 1.1em;
@@ -49,12 +45,46 @@ input[type=number] {
 }
 
 input:hover {
-    box-shadow: 0 0 0 2px #b5c5d7;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.08);
 }
 
 .timeInput {
     width: 130px;
 }
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    align-content: stretch;
+}
+
+.flex-column {
+    padding-top: 3%;
+    display: block;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: auto;
+    order: 0;
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: stretch;
+}
+
+.flex-items {
+    display: block;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: auto;
+    order: 0;
+  }
 
 label {
     display: inline;
@@ -64,5 +94,10 @@ label {
 
 span {
     font-size: 1.2em; 
-    font-weight: bold;
+    font-weight: 500;
+}
+
+.formattedTime {
+    font-size: 0.8em;
+    font-weight: normal;
 }

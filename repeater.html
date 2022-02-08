@@ -11,25 +11,29 @@
 <body>
     <div class='title' id='wall'>
         <div class='centered'>
-            <div class='horizontal-center'>
-                <label>
-                <span>Youtube Video URL</span>
-                <input type='text' id='urlInput' onfocus='this.select()' placeholder="www.youtube.com/watch?..." value="https://www.youtube.com/watch?v=j1hft9Wjq9U">
-                </label>
+            <div class='flex-container'>
+                <div class="flex-items">
+                    <span>Youtube Video URL</span>
+                    <input type='text' id='urlInput' onfocus='this.select()' placeholder="www.youtube.com/watch?..." value="https://www.youtube.com/watch?v=j1hft9Wjq9U">
+                </div>
             </div>
 
             <div id="player"></div>
-            
-            <div class='horizontal-center'>
-                <label>
-                  <span>Start Time (seconds)</span>
-                  <input type='number' id='startTimeInput' class='timeInput' onfocus='this.select()' step='1' min='0' value=0 required=true>
-                </label>
-                <label>
-                  <span>End Time (seconds)</span>
-                  <input type='number' id='endTimeInput' class='timeInput' onfocus='this.select()' step='1' min='0' value=0 required=true>
-                </label>
+        
+            <div class="flex-container">
+                <div class="flex-column">
+                    <span>Start Time (seconds)</span>
+                    <input type='number' id='startTimeInput' class='timeInput' onfocus='this.select()' step='1' min='0' value=0 required=true>
+                    <span class='formattedTime' id="formattedStartTime"></span>
+                </div>
+                <div class="flex-column">
+                    <span>End Time (seconds)</span>
+                    <input type='number' id='endTimeInput' class='timeInput' onfocus='this.select()' step='1' min='0' value=0 required=true>
+                    <span class='formattedTime' id="formattedEndTime"></span>
+                </div>
             </div>
+
+
         </div>
     </div>
 
