@@ -47,7 +47,8 @@ window.onYouTubeIframeAPIReady = function() {
 function onReady(event) {
     log('Player ready');
     vidLength = Math.floor(player.playerInfo.duration);
-    setStartAndEndTimes();
+    log(`player info for id: ${videoId}, info`, player.playerInfo);
+    resetStartAndEndTimes();
     syncTimeFields();
     setInputValueCeilings();
 
@@ -55,7 +56,7 @@ function onReady(event) {
     player.playVideo();
 }
 
-function setStartAndEndTimes() { 
+function resetStartAndEndTimes() { 
     times.start = 0;
     times.end = vidLength;
 }
@@ -101,7 +102,7 @@ function restartVideoSection() {
 
 function reloadPlayer() {
     if (player) {
-        // log('Destroyed player');
+        log('Destroyed player');
         player.destroy();
     }
     onYouTubeIframeAPIReady();
@@ -216,6 +217,4 @@ window.onload = (function() {
 
     urlInput = document.querySelector('#urlInput');
     urlInput.addEventListener('change', _updateUrl);
-    // urlInput.addEventListener('change', _updateStart);
-    // urlInput.addEventListener('change', _updateEnd);
 })();
