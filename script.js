@@ -48,20 +48,20 @@ function onReady(event) {
     log('Player ready');
     vidLength = Math.floor(player.playerInfo.duration);
     log(`player info for id: ${videoId}, info`, player.playerInfo);
-    resetStartAndEndTimes();
-    syncTimeFields();
-    setInputValueCeilings();
+    _resetStartAndEndTimes();
+    _syncTimeFields();
+    _setInputValueCeilings();
 
     player.seekTo(times.start);
     player.playVideo();
 }
 
-function resetStartAndEndTimes() { 
+function _resetStartAndEndTimes() { 
     times.start = 0;
     times.end = vidLength;
 }
 
-function syncTimeFields() {
+function _syncTimeFields() {
     startInput.value = times.start;
     endInput.value = times.end;
     resetFormattedTimeDisplays();
@@ -72,13 +72,13 @@ function resetFormattedTimeDisplays() {
     _showFormattedTime(endInput, FORMATTED_END_TIME_ID)();
 }
 
-function setInputValueCeilings() {
+function _setInputValueCeilings() {
     startInput.setAttribute('max', times.end.toString());
     endInput.setAttribute('max', times.end.toString());
 }
 
 function onStateChange(event) {
-    // log('Player state change')
+    log('Player state change')
     if (event.data == YT.PlayerState.PLAYING) {
         var end = Math.min(times.end, vidLength);
         var start = Math.max(player.getCurrentTime(), times.start, 0);
