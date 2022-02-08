@@ -45,15 +45,20 @@ window.onYouTubeIframeAPIReady = function() {
 }
 
 function onReady(event) {
-    log('Player ready');
+    log('Player ready 1');
     vidLength = Math.floor(player.playerInfo.duration);
     log(`player info for id: ${videoId}, info`, player.playerInfo);
-    _resetStartAndEndTimes();
-    _syncTimeFields();
-    _setInputValueCeilings();
+    
+    syncTime();
 
     player.seekTo(times.start);
     player.playVideo();
+}
+
+function syncTime() {
+    _resetStartAndEndTimes();
+    _syncTimeFields();
+    _setInputValueCeilings();
 }
 
 function _resetStartAndEndTimes() { 
@@ -100,12 +105,15 @@ function restartVideoSection() {
     }
 }
 
-function reloadPlayer() {
+function _reloadPlayer() {
     if (player) {
         log('Destroyed player');
         player.destroy();
     }
     onYouTubeIframeAPIReady();
+    syncTime();
+
+    
 }
 // -- end youtube script
 
@@ -141,7 +149,7 @@ function _updateUrl() {
     log('Current video - ID:', videoId);
     videoId = _getVideoId(url);
     log('New video requested - ID:', videoId);
-    reloadPlayer();
+    _reloadPlayer();
 }
 
 function _getVideoId(url) {
