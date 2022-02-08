@@ -45,7 +45,7 @@ window.onYouTubeIframeAPIReady = function() {
 }
 
 function onReady(event) {
-    // log('Player ready');
+    log('Player ready');
     vidLength = Math.floor(player.playerInfo.duration);
     setStartAndEndTimes();
     syncTimeFields();
@@ -216,6 +216,6 @@ window.onload = (function() {
 
     urlInput = document.querySelector('#urlInput');
     urlInput.addEventListener('change', _updateUrl);
-    urlInput.addEventListener('change', _updateStart);
-    urlInput.addEventListener('change', _updateEnd);
+    // urlInput.addEventListener('change', _updateStart);
+    // urlInput.addEventListener('change', _updateEnd);
 })();
