@@ -45,9 +45,8 @@ window.onYouTubeIframeAPIReady = function() {
 }
 
 function onReady(event) {
-    log('Player ready 1');
+    log('Player ready...');
     vidLength = Math.floor(player.playerInfo.duration);
-    log(`player info for id: ${videoId}, info`, player.playerInfo);
     
     syncTime();
 
@@ -83,7 +82,7 @@ function _setInputValueCeilings() {
 }
 
 function onStateChange(event) {
-    log('Player state change')
+    log('Player state change...')
     if (event.data == YT.PlayerState.PLAYING) {
         var end = Math.min(times.end, vidLength);
         var start = Math.max(player.getCurrentTime(), times.start, 0);
@@ -101,13 +100,13 @@ function restartVideoSection() {
     if (player) {
         player.seekTo(times.start);
     } else {
-        log("Player does not exist");
+        log("Player does not exist...");
     }
 }
 
 function _reloadPlayer() {
     if (player) {
-        log('Destroyed player');
+        log('Destroyed player...');
         player.destroy();
     }
     onYouTubeIframeAPIReady();
@@ -125,7 +124,7 @@ function _updateStart() {
     if (player.playerInfo.currentTime < times.start) {
         restartVideoSection();
     }
-    log('Start time updated to', times.start);
+    // log('Start time updated to', times.start);
     if (times.start > times.end) {
         times.end = times.start;
         endInput.value = times.start;
@@ -137,7 +136,7 @@ function _updateEnd() {
     if (times.end < player.playerInfo.currentTime) {
         restartVideoSection();
     }
-    log('End time updated to', times.end);
+    // log('End time updated to', times.end);
     if (times.end < times.start) {
         times.start = times.end;
         startInput.value = times.end;
